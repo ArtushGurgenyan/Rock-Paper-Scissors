@@ -17,14 +17,19 @@ const Game = () => {
     winOrLose(playerChoice, bot);
   };
 
-  const winOrLose = (p, c) => {
-    if (p === c) {
+  const winOrLose = (playerChoice, computerChoice) => {
+    if (playerChoice === computerChoice) {
       setAnswer("It's a tie!");
-    } else if (
-      (p === "Rock" && c === "Scissors") ||
-      (p === "Scissors" && c === "Paper") ||
-      (p === "Paper" && c === "Rock")
-    ) {
+      return;
+    }
+
+    const winningCombinations = {
+      Rock: "Scissors",
+      Scissors: "Paper",
+      Paper: "Rock",
+    };
+
+    if (winningCombinations[playerChoice] === computerChoice) {
       setAnswer("You won!");
       setScore(score + 1);
     } else {
